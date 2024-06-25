@@ -353,7 +353,7 @@
             for (var k = 0; k < 抽獎結果.length; k++) {
                 var prize = 抽獎結果[k].名稱;
                 var probability = 抽獎結果[k].機率;
-                if (probability < 0.01) { // 改為只顯示機率1%以下的物品
+                if (probability < 0.001) { // 改為只顯示機率1%以下的物品
                     顯示結果 += prize + "<br>"; // 以百分比形式顯示機率
                 }
             }
