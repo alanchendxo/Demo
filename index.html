@@ -1,238 +1,321 @@
-<!-- bootstrap -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<!DOCTYPE html>
+<html lang="en">
 
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7648432463826362"
-    crossorigin="anonymous"></script>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>抽獎表格</title>
+</head>
 
-<script>
-    var gachaResult = new Object();
-    var gachaCount = 0;
-    /** 驚奇怪異轉蛋 (08/17-09/07) **/
-    
-    function 驚奇怪異轉蛋() {
-        return '[' +
-            '{"name":"擴音器[轉蛋專用]", "rare":"B", "amount":5},' +
-            '{"name":"狂暴蟻后卷軸[轉蛋專用]", "rare":"B", "amount":5},' +
-            '{"name":"風靈鎧甲卷軸", "rare":"B", "amount":2},' +
-            '{"name":"天使之賜福 10等級卷軸[轉蛋專用]", "rare":"B", "amount":5},' +
-            '{"name":"隨地倉庫使用券[轉蛋專用]", "rare":"B", "amount":5},' +
-            '{"name":"靈巧棒棒條[轉蛋專用]", "rare":"B", "amount":5},' +
-            '{"name":"活力激發劑", "rare":"B", "amount":2},' +
-            '{"name":"力量防護卷軸", "rare":"B", "amount":3},' +
-            '{"name":"變身卷軸秘笈", "rare":"B", "amount":2},' +
-            '{"name":"髮型精靈合成箱", "rare":"B", "amount":1},' +
-            '{"name":"真力量防護卷軸", "rare":"B", "amount":3},' +
-            '{"name":"忽克連影子精煉鎚", "rare":"B", "amount":1},' +
-            '{"name":"修羅假髮禮盒", "rare":"B", "amount":1},' +
-            '{"name":"服飾附魔石精靈合成箱", "rare":"B", "amount":1},' +
-            '{"name":"影子職業屬性咒語(魔法)", "rare":"B", "amount":3},' +
-            '{"name":"影子職業屬性咒語(物理)", "rare":"B", "amount":3},' +
-            '{"name":"影子特性屬性咒語", "rare":"B", "amount":2},' +
-            '{"name":"(服飾)魅力閃電之力", "rare":"B", "amount":1},' +
-            '{"name":"影子創造手套", "rare":"B", "amount":1},' +
-            '{"name":"影子創造神盾", "rare":"B", "amount":1},' +
-            '{"name":"影子專注手套", "rare":"B", "amount":1},' +
-            '{"name":"影子專注神盾", "rare":"B", "amount":1},' +
-            '{"name":"英雄武器-LT物理改造裝置", "rare":"B", "amount":2},' +
-            '{"name":"英雄武器-LT魔法改造裝置", "rare":"B", "amount":2},' +
-            '{"name":"活力信念武器精煉鎚", "rare":"B", "amount":1},' +
-            '{"name":"將領軍帽", "rare":"B", "amount":1},' +
-            '{"name":"背飾精靈合成箱", "rare":"B", "amount":1},' +
-            '{"name":"(服飾)古代盧恩符文", "rare":"B", "amount":1},' +
-            '{"name":"英雄吊墜蛋", "rare":"B", "amount":1},' +
-            '{"name":"精煉能力券信封", "rare":"B", "amount":1},' +
-            '{"name":"叛亂軍鎖鍊", "rare":"B", "amount":1},' +
-            '{"name":"祈禱的黃昏鐘(魂靈師)", "rare":"B", "amount":1},' +
-            '{"name":"聖之羽翼神盾", "rare":"B", "amount":1},' +
-            '{"name":"附魔票3入禮券", "rare":"B", "amount":1},' +
-            '{"name":"吞神魔盾-闇嗜", "rare":"B", "amount":1},' +
-            '{"name":"影子全然體型選擇箱", "rare":"B", "amount":1},' +
-            '{"name":"懺悔勇氣冠冕", "rare":"B", "amount":1},' +
-            '{"name":"伊美樂心臟能量石", "rare":"B", "amount":1},' +
-            '{"name":"王水瓶", "rare":"B", "amount":1},' +
-            '{"name":"絕望之神夢羅克卡片", "rare":"B", "amount":1}' +
-            ']';
-    }
+<body>
+    <div class="container">
+        <h2>抽獎表格</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>物品</th>
+                    <th>數量</th>
+                    <th>轉蛋機率</th>
+                    <th>備註</th>
+                </tr>
+            </thead>
+            <tbody>
+                以下是所有資料的完整表格內容：
 
-    function getDefaultJson() {
-        return 驚奇怪異轉蛋();
-    }
+                ```html
+                <tr>
+                    <td>擴音器[轉蛋專用]</td>
+                    <td>5</td>
+                    <td>12.960%</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>狂暴蟻后卷軸[轉蛋專用]</td>
+                    <td>5</td>
+                    <td>12.960%</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>風靈鎧甲卷軸</td>
+                    <td>2</td>
+                    <td>12.960%</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>天使之賜福 10等級卷軸[轉蛋專用]</td>
+                    <td>5</td>
+                    <td>12.960%</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>隨地倉庫使用券[轉蛋專用]</td>
+                    <td>5</td>
+                    <td>12.960%</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>靈巧棒棒條[轉蛋專用]</td>
+                    <td>5</td>
+                    <td>8.000%</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>活力激發劑</td>
+                    <td>2</td>
+                    <td>8.000%</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>力量防護卷軸</td>
+                    <td>3</td>
+                    <td>8.000%</td>
+                    <td>不可交易</td>
+                </tr>
+                <tr>
+                    <td>變身卷軸秘笈</td>
+                    <td>2</td>
+                    <td>2.500%</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>髮型精靈合成箱</td>
+                    <td>1</td>
+                    <td>1.500%</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>真力量防護卷軸</td>
+                    <td>3</td>
+                    <td>1.500%</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>忽克連影子精煉鎚</td>
+                    <td>1</td>
+                    <td>1.050%</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>修羅假髮禮盒</td>
+                    <td>1</td>
+                    <td>1.000%</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>服飾附魔石精靈合成箱</td>
+                    <td>1</td>
+                    <td>1.000%</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>影子職業屬性咒語(魔法)</td>
+                    <td>3</td>
+                    <td>0.205%</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>影子職業屬性咒語(物理)</td>
+                    <td>3</td>
+                    <td>0.205%</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>影子特性屬性咒語</td>
+                    <td>2</td>
+                    <td>0.200%</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>(服飾)魅力閃電之力</td>
+                    <td>1</td>
+                    <td>0.200%</td>
+                    <td>可附魔</td>
+                </tr>
+                <tr>
+                    <td>影子創造手套</td>
+                    <td>1</td>
+                    <td>0.200%</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>影子創造神盾</td>
+                    <td>1</td>
+                    <td>0.200%</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>影子專注手套</td>
+                    <td>1</td>
+                    <td>0.200%</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>影子專注神盾</td>
+                    <td>1</td>
+                    <td>0.200%</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>英雄武器-LT物理改造裝置</td>
+                    <td>2</td>
+                    <td>0.150%</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>英雄武器-LT魔法改造裝置</td>
+                    <td>2</td>
+                    <td>0.150%</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>活力信念武器精煉鎚</td>
+                    <td>1</td>
+                    <td>0.125%</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>將領軍帽</td>
+                    <td>1</td>
+                    <td>0.075%</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>背飾精靈合成箱</td>
+                    <td>1</td>
+                    <td>0.075%</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>(服飾)古代盧恩符文</td>
+                    <td>1</td>
+                    <td>0.060%</td>
+                    <td>可附魔</td>
+                </tr>
+                <tr>
+                    <td>英雄吊墜蛋</td>
+                    <td>1</td>
+                    <td>0.060%</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>精煉能力券信封</td>
+                    <td>1</td>
+                    <td>0.050%</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>叛亂軍鎖鍊</td>
+                    <td>1</td>
+                    <td>0.050%</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>祈禱的黃昏鐘(魂靈師)</td>
+                    <td>1</td>
+                    <td>0.050%</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>聖之羽翼神盾</td>
+                    <td>1</td>
+                    <td>0.045%</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>附魔票3入禮券</td>
+                    <td>1</td>
+                    <td>0.040%</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>吞神魔盾-闇嗜</td>
+                    <td>1</td>
+                    <td>0.035%</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>影子全然體型選擇箱</td>
+                    <td>1</td>
+                    <td>0.030%</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>懺悔勇氣冠冕</td>
+                    <td>1</td>
+                    <td>0.025%</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>伊美樂心臟能量石</td>
+                    <td>1</td>
+                    <td>0.010%</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>王水瓶</td>
+                    <td>1</td>
+                    <td>0.005%</td>
+                    <td>不可交易</td>
+                </tr>
+                <tr>
+                    <td>絕望之神夢羅克卡片</td>
+                    <td>1</td>
+                    <td>0.005%</td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="form-group">
+            <label for="quantity">請輸入數量:</label>
+            <input type="number" class="form-control" id="quantity">
+        </div>
+        <button type="button" class="btn btn-primary" onclick="抽獎()">開始抽獎</button>
+        <div id="抽獎結果" class="mt-4">
+            <!-- 這裡會顯示抽獎結果 -->
+        </div>
+    </div>
 
-    /** 儲存資料 **/
-    function makeHiddenGacha() {
-        var input = document.createElement('input');
-        input.type = 'hidden';
-        input.value = getDefaultJson();
-        input.id = "gachaInfo";
+    <script>
+        function 抽獎() {
+            // 取得輸入的數量
+            var 數量 = document.getElementById("quantity").value;
 
-        var body = document.getElementById("body");
-        body.appendChild(input);
-    }
+            // 建立一個儲存抽獎機率的數組
+            var 機率數組 = [
+                12.960, 12.960, 12.960, 12.960, 12.960, // 擴音器[轉蛋專用], 狂暴蟻后卷軸, 風靈鎧甲卷軸, 天使之賜福, 隨地倉庫使用券
+                8.000, 8.000, 8.000, // 靈巧棒棒條, 活力激發劑, 力量防護卷軸
+                2.500, 1.500, 1.500, 1.050, 1.000, 1.000, // 變身卷軸秘笈, 髮型精靈合成箱, 真力量防護卷軸, 忽克連影子精煉鎚, 修羅假髮禮盒, 服飾附魔石精靈合成箱
+                0.205, 0.205, 0.200, 0.200, 0.200, 0.200, // 影子職業屬性咒語(魔法), 影子職業屬性咒語(物理), 影子特性屬性咒語, 魅力閃電之力, 影子創造手套, 影子創造神盾, 影子專注手套, 影子專注神盾
+                0.150, 0.150, 0.125, // 英雄武器-LT物理改造裝置, 英雄武器-LT魔法改造裝置, 活力信念武器精煉鎚
+                0.075, 0.075, 0.060, 0.060, // 將領軍帽, 背飾精靈合成箱, (服飾)古代盧恩符文, 英雄吊墜蛋
+                0.050, 0.050, 0.050, // 精煉能力券信封, 叛亂軍鎖鍊, 祈禱的黃昏鐘
+                0.045, 0.040, 0.035, 0.030, // 聖之羽翼神盾, 附魔票3入禮券, 吞神魔盾-闇嗜, 影子全然體型選擇箱
+                0.025, 0.010, // 懺悔勇氣冠冕, 伊美樂心臟能量石
+                0.005, 0.005  // 王水瓶, 絕望之神夢羅克卡片
+            ];
 
-    /** 讀取Table **/
-    function loadInfoTable() {
-        var jsonInfo = document.getElementById("gachaInfo").value;
+            var 抽獎結果 = [];
 
-        //[{name:a, rare:s, amount:1}, ...]
-        infoObj = JSON.parse(jsonInfo);
+            for (var i = 0; i < 數量; i++) {
+                var 隨機數 = Math.random() * 100; // 生成0到100之間的隨機數
 
-        var tBody = document.getElementById("tbody");
-        tBody.innerHTML = "";
-        infoObj.forEach(function (item) {
-            var row = document.createElement("tr");
-            row.appendChild(makeTdCell(item.name));
-            row.appendChild(makeTdCell(item.rare));
-            row.appendChild(makeTdCell(item.amount));
-            tBody.appendChild(row);
-        });
+                // 隨機數和機率進行比較，決定抽中的獎品
+                if (隨機數 < 機率數組[0]) {
+                    抽獎結果.push("擴音器[轉蛋專用]");
+                } else if (隨機數 < 機率數組[0] + 機率數組[1]) {
+                    抽獎結果.push("狂暴蟻后卷軸[轉蛋專用]");
+                }
+                // 其他獎品的抽中判斷 
+                //...
+            }
 
-        //change rate text
-        let firstItemRareSetting = infoObj[0].rare;
-        let isNewVersionTable = this.isNumber(firstItemRareSetting.replaceAll('%', ''));
-        if (isNewVersionTable) {
-            //整數運算避免除法計算錯誤
-            var totalRate = 0;
-            infoObj.forEach(function (item) {
-                var rate = parseFloat(item.rare.replaceAll('%', '')) * 1000;
-                totalRate = totalRate + rate;
-            });
-            totalRate = totalRate / 1000;
-
-            $('#gacha_rate_setting').hide();
-            $('#ro_rate_setting').append(", 目前總和為" + totalRate + "%")
-            $('#ro_rate_setting').show();
-        } else {
-            $('#gacha_rate_setting').show();
-            $('#ro_rate_setting').hide();
+            // 將抽獎結果顯示在畫面上
+            var 結果區域 = document.getElementById("抽獎結果");
+            結果區域.innerHTML = "抽獎結果: " + 抽獎結果.join(", ");
         }
-    }
-    
-    //...以下省略
-</script>
 
-<!-- 機率 -->
-<div class="container">
-    <div id="gacha_rate_setting">
-        <h6>機率 (預設參考波利掉落)</h6>
-        <div class="input-group input-group-sm mb-3">
-            <div class="input-group-prepend">
-                <span class="input-group-text">B</span>
-            </div>
-            <input type="text" class="form-control" aria-label="Sizing example input"
-                aria-describedby="inputGroup-sizing-sm" value="12.960" id="probability_b">
+    </script>
+</body>
 
-            <div class="input-group-prepend">
-                <span class="input-group-text" id="inputGroup-sizing-sm">A</span>
-            </div>
-            <input type="text" class="form-control" aria-label="Sizing example input"
-                aria-describedby="inputGroup-sizing-sm" value="12.960" id="probability_a">
-
-            <div class="input-group-prepend">
-                <span class="input-group-text" id="inputGroup-sizing-sm">S</span>
-            </div>
-            <input type="text" class="form-control" aria-label="Sizing example input"
-                aria-describedby="inputGroup-sizing-sm" value="12.960" id="probability_s">
-
-            <div class="input-group-prepend">
-                <span class="input-group-text" id="inputGroup-sizing-sm">SS</span>
-            </div>
-            <input type="text" class="form-control" aria-label="Sizing example input"
-                aria-describedby="inputGroup-sizing-sm" value="8.000" id="probability_ss">
-
-            <div class="input-group-prepend">
-                <span class="input-group-text" id="inputGroup-sizing-sm">SSS</span>
-            </div>
-            <input type="text" class="form-control" aria-label="Sizing example input"
-                aria-describedby="inputGroup-sizing-sm" value="0.005" id="probability_sss">
-        </div>
-    </div>
-    <h6 id="ro_rate_setting">官方提供機率套用中</h6>
-</div>
-
-<div class="container">
-    <button type="button" class="btn btn-danger offset-md-8" onclick="gachaOnce()"> 轉蛋模擬 </button>
-    <button type="button" class="btn btn-danger" onclick="gachaFiveTimes()"> 5連 </button>
-    <button type="button" class="btn btn-danger" onclick="gachaTimes(50)"> 50連</button>
-    <button type="button" class="btn btn-danger" onclick="gachaTimes(100)"> 100連 </button>
-    <!-- <button type="button" class="btn btn-danger" onclick="gachaFouceSSS()" > SSS抽獎次數模擬</button> -->
-
-    <!-- <button type="button" class="btn btn-secondary col-md-1" data-toggle="modal" data-target="#myModal"> -->
-    <button type="button" class="btn btn-secondary col-md-1" onclick="showModal()">
-        物品
-    </button>
-</div>
-
-<hr>
-
-<!-- 結果 -->
-<div class="container" id="result">
-    <!-- 注入 -->
-</div>
-
-<hr>
-<!-- 轉蛋內容 -->
-<div class="container">
-    <table class="table">
-        <thead class="thead-dark">
-            <tr>
-                <th>物品名</th>
-                <th>稀有度</th>
-                <th>數量</th>
-            </tr>
-        </thead>
-        <tbody id="tbody">
-            <!-- 初始化後出現 -->
-        </tbody>
-    </table>
-</div>
-
-<div class="form-group container">
-    <input type="text" placeholder="請輸入轉蛋公告網址" id="roUrl" />
-    <button type="button" class="btn btn-danger" onclick="inputByRO()"> 匯入 </button>
-</div>
-
-
-<!-- 二代匯入取代並廢棄 -->
-<!-- <div class="form-group container">
-    <label for="comment">Comment:</label>
-    <textarea class="form-control" rows="15" id = "json_inputer"></textarea>
-</div>
-
-<div class="container text-right" >
-    <button type="button" class="btn btn-danger" onclick="outputJson()" > 匯出 </button>
-    <button type="button" class="btn btn-danger" onclick="inputJson()" > 匯入 </button>
-</div> -->
-
-
-
-<!-- 提示框 -->
-<div class="modal fade" id="myModal">
-    <div class="modal-dialog">
-        <div class="modal-content">
-
-            <!-- 頭部 -->
-            <div class="modal-header">
-                <h4 class="modal-title">你的戰利品</h4>
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-            </div>
-
-            <!-- body -->
-            <div class="modal-body" id="item_box">
-
-            </div>
-
-            <!-- 底部 -->
-            <div class="modal-footer">
-                <button class="btn btn-secondary offset-md-0" data-dismiss="modal"
-                    onclick="clearGachaResult()">清除結果</button>
-                <input hidden id="gacha_counter" type="number" value=0>
-            </div>
-
-        </div>
-    </div>
-</div>
-
-<script>  init(); </script>
+</html>
