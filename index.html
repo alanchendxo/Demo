@@ -353,10 +353,8 @@
             for (var k = 0; k < 抽獎結果.length; k++) {
                 var prize = 抽獎結果[k].名稱;
                 var probability = 抽獎結果[k].機率;
-                if (probability < 0.001) { // 如果機率小於0.1%
-                    顯示結果 += "<span style='font-weight: bold; color: red;'>" + prize + "</span><br>";
-                } else {
-                    顯示結果 += prize + "<br>";
+                if (probability < 0.01) { // 改為只顯示機率1%以下的物品
+                    顯示結果 += prize + " (" + probability * 100 + "%)<br>"; // 以百分比形式顯示機率
                 }
             }
             結果區域.innerHTML = 顯示結果;
