@@ -17,6 +17,18 @@
 <body>
     <div class="container">
         <h2>2024 6月轉蛋II</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>物品</th>
+                    <th>數量</th>
+                    <th>轉蛋機率</th>
+                    <th>備註</th>
+                </tr>
+            </thead>
+            <tbody id="tableBody">
+            </tbody>
+        </table>
         <div class="form-group">
             <label for="quantity">請輸入數量:</label>
             <input type="number" class="form-control" id="quantity">
@@ -28,6 +40,56 @@
     </div>
 
     <script>
+        var items = [
+            ["擴音器[轉蛋專用]", 5, 12.960],
+            ["狂暴蟻后卷軸[轉蛋專用]", 5, 12.960],
+            ["幽靈波利卷軸[轉蛋專用]", 3, 12.960],
+            ["加速術 10等級卷軸[轉蛋專用]", 5, 12.960],
+            ["隨地倉庫使用券[轉蛋專用]", 5, 12.960],
+            ["幸運棒棒條[轉蛋專用]", 5, 8.000],
+            ["原地復活之證[轉蛋專用]", 2, 8.000],
+            ["力量防護卷軸", 3, 8.000],
+            ["變身卷軸秘笈", 2, 2.500],
+            ["阿斯特莉亞魂心(物理)", 3, 1.500],
+            ["阿斯特莉亞魂心(魔法)", 3, 1.500],
+            ["忽克連影子精煉鎚", 1, 1.050],
+            ["修羅假髮禮盒", 1, 1.000],
+            ["時光封印鑰匙", 3, 1.000],
+            ["影子職業屬性咒語(魔法)", 3, 0.220],
+            ["影子職業屬性咒語(物理)", 3, 0.215],
+            ["影子二期屬性咒語箱", 2, 0.200],
+            ["影子精工詠唱屬性咒語", 2, 0.200],
+            ["純淨石", 3, 0.200],
+            ["雜念石", 3, 0.200],
+            ["(服飾)紙箱帽2(下)", 1, 0.200],
+            ["時光超越能量", 1, 0.175],
+            ["英雄武器-LT物理改造裝置", 2, 0.150],
+            ["英雄武器-LT魔法改造裝置", 2, 0.150],
+            ["強力精華球", 1, 0.125],
+            ["卡普拉姊姊頭飾", 1, 0.075],
+            ["卡普拉姊姊服裝", 1, 0.075],
+            ["(服飾)波利護士針筒", 1, 0.060],
+            ["阿斯特莉亞鎧甲", 1, 0.060],
+            ["惡魔獵爪拳套", 1, 0.050],
+            ["懲治審判錘", 1, 0.050],
+            ["善惡冠冕(聖裁者)", 1, 0.050],
+            ["精煉能力券信封", 1, 0.045],
+            ["附魔票3入禮券", 1, 0.040],
+            ["影子純淨手套", 1, 0.035],
+            ["影子精工詠唱選擇箱", 1, 0.030],
+            ["漂浮快樂氣球", 1, 0.025],
+            ["伊美樂心臟能量石", 1, 0.010],
+            ["闇●劍士 賽尼亞卡片", 1, 0.005],
+            ["魔王夢羅克的忠誠僕人", 1, 0.005],
+        ]
+        var tableBody = document.getElementById("tableBody");
+        for (var i = 0; i < items.length; i++) {
+            var row = tableBody.insertRow();
+            row.insertCell().appendChild(document.createTextNode(items[i][0]));
+            row.insertCell().appendChild(document.createTextNode(items[i][1]));
+            row.insertCell().appendChild(document.createTextNode(items[i][2] + "%"));
+            row.insertCell().appendChild(document.createTextNode(""));
+        }
         function 抽獎() {
             var 數量 = document.getElementById("quantity").value;
 
