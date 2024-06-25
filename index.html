@@ -135,14 +135,6 @@
                 ["闇●劍士 賽尼亞卡片", 1, 0.005],
                 ["魔王夢羅克的忠誠僕人", 1, 0.005],
             ]
-            var tableBody = document.getElementById("tableBody");
-            for (var i = 0; i < items.length; i++) {
-                var row = tableBody.insertRow();
-                row.insertCell().appendChild(document.createTextNode(items[i][0]));
-                row.insertCell().appendChild(document.createTextNode(items[i][1]));
-                row.insertCell().appendChild(document.createTextNode(items[i][2] + "%"));
-                row.insertCell().appendChild(document.createTextNode(""));
-            }
 
             var 抽獎結果 = {};
 
