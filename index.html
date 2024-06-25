@@ -330,7 +330,7 @@
 
             for (var i = 0; i < 數量; i++) {
                 var 隨機數 = Math.random(); // 生成0到1之間的隨機數
-
+            
                 var 抽中的索引 = -1;
                 var cumulativeProbability = 0;
                 for (var j = 0; j < items.length; j++) {
@@ -340,7 +340,7 @@
                         break;
                     }
                 }
-
+            
                 if (抽中的索引 !== -1) {
                     var 抽中的物品 = { "名稱": items[抽中的索引][0], "機率": items[抽中的索引][2] };
                     if (抽中的物品.名稱 in 抽獎結果) {
@@ -356,10 +356,10 @@
                     }
                 }
             }
-
+            
             var 結果區域 = document.getElementById("抽獎結果");
             var 顯示結果 = "抽獎結果:<br>";
-
+            
             for (var key in 抽獎結果) {
                 if (抽獎結果.hasOwnProperty(key)) {
                     var prize = key;
@@ -367,12 +367,16 @@
                     if (amount > 1) {
                         prize += " x" + amount;
                     }
+                    if (items.find(function(item) { return item[0] === key; })[2] < 0.001) {
+                        prize = "<span style='color: red; font-weight: bold;'>" + prize + "</span>";
+                    }
                     顯示結果 += prize + "<br>";
                 }
             }
-
+            
             結果區域.innerHTML = 顯示結果;
-            window.scrollTo(0, document.body.scrollHeight);
+            window.scrollTo(0,document.body.scrollHeight);
+            
         }
     </script>
 </body>
