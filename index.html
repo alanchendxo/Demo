@@ -1,7 +1,31 @@
-<!DOCTYPE html>
-<html>
-<body>
-<h1>Hello World</h1>
-<p>I'm hosted with GitHub Pages.</p>
-</body>
-</html>
+<h2>Results</h2>
+<div id="results"></div>
+
+<script>
+    document.querySelector("form").addEventListener("submit", function(event) {
+        event.preventDefault();
+        const formData = new FormData(event.target);
+
+        fetch("/simulate", {
+            method: "POST",
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            const resultsDiv = document.getElementById("results");
+            resultsDiv.innerHTML = `
+                <p>Number of Simulations: ${data.num_simulations}</p>
+                <p>Total Price: ${data.total}</p>
+                <h3>SSS Tier Items:</h3>`;
+            if (data.SSS.length > 0) {
+                resultsDiv.innerHTML += "<ul>";
+                for (const item of data.SSS) {
+                    resultsDiv.innerHTML += `<li>${item[0]}: ${item[1]} items</li>`;
+                }
+                resultsDiv.innerHTML += "</ul>";
+            } else {
+                resultsDiv.innerHTML += "<p>No SSS Tier Items.</p>";
+            }
+        });
+    });
+</script>
