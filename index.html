@@ -6,6 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <title>抽獎表格</title>
+    <style>
+        .low-probability {
+            font-weight: bold;
+            color: red;
+        }
+    </style>
 </head>
 
 <body>
@@ -325,29 +331,36 @@
             for (var i = 0; i < 數量; i++) {
                 var 隨機數 = Math.random(); // 生成0到1之間的隨機數
 
-                var randomNumber = Math.random(); // Generate a random number between 0 and 1
-                var cumulativeProbability = 0;
                 var 抽中的索引 = -1;
-
+                var cumulativeProbability = 0;
                 for (var j = 0; j < items.length; j++) {
                     cumulativeProbability += items[j][2];
-                    if (randomNumber < cumulativeProbability) {
+                    if (隨機數 < cumulativeProbability) {
                         抽中的索引 = j;
                         break;
                     }
                 }
 
                 if (抽中的索引 !== -1) {
-                    抽獎結果.push(items[抽中的索引][0]);
+                    抽獎結果.push({ "名稱": items[抽中的索引][0], "機率": items[抽中的索引][2] });
                 } else {
-                    抽獎結果.push("未中獎");
+                    抽獎結果.push({ "名稱": "未中獎", "機率": 0 });
                 }
             }
 
             var 結果區域 = document.getElementById("抽獎結果");
-            結果區域.innerHTML = "抽獎結果:<br>" + 抽獎結果.join("<br>");
+            var 顯示結果 = "抽獎結果:<br>";
+            for (var k = 0; k < 抽獎結果.length; k++) {
+                var prize = 抽獎結果[k].名稱;
+                var probability = 抽獎結果[k].機率;
+                if (probability < 0.001) { // 如果機率小於0.1%
+                    顯示結果 += "<span style='font-weight: bold; color: red;'>" + prize + "</span><br>";
+                } else {
+                    顯示結果 += prize + "<br>";
+                }
+            }
+            結果區域.innerHTML = 顯示結果;
         }
-
     </script>
 </body>
 
