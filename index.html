@@ -326,7 +326,7 @@
                 ["絕望之神夢羅克卡片", 1, 0.00005],
             ]
 
-            var 抽獎結果 = [];
+            var 抽獎結果 = {};
 
             for (var i = 0; i < 數量; i++) {
                 var 隨機數 = Math.random(); // 生成0到1之間的隨機數
@@ -342,23 +342,37 @@
                 }
 
                 if (抽中的索引 !== -1) {
-                    抽獎結果.push({ "名稱": items[抽中的索引][0], "機率": items[抽中的索引][2] });
+                    var 抽中的物品 = { "名稱": items[抽中的索引][0], "機率": items[抽中的索引][2] };
+                    if (抽中的物品.名稱 in 抽獎結果) {
+                        抽獎結果[抽中的物品.名稱]++;
+                    } else {
+                        抽獎結果[抽中的物品.名稱] = 1;
+                    }
                 } else {
-                    抽獎結果.push({ "名稱": "未中獎", "機率": 0 });
+                    if ("未中獎" in 抽獎結果) {
+                        抽獎結果["未中獎"]++;
+                    } else {
+                        抽獎結果["未中獎"] = 1;
+                    }
                 }
             }
 
             var 結果區域 = document.getElementById("抽獎結果");
             var 顯示結果 = "抽獎結果:<br>";
-            for (var k = 0; k < 抽獎結果.length; k++) {
-                var prize = 抽獎結果[k].名稱;
-                var probability = 抽獎結果[k].機率;
-                if (probability < 0.001) { // 改為只顯示機率1%以下的物品
-                    顯示結果 += prize + "<br>"; // 以百分比形式顯示機率
+
+            for (var key in 抽獎結果) {
+                if (抽獎結果.hasOwnProperty(key)) {
+                    var prize = key;
+                    var amount = 抽獎結果[key];
+                    if (amount > 1) {
+                        prize += " x" + amount;
+                    }
+                    顯示結果 += prize + "<br>";
                 }
             }
+
             結果區域.innerHTML = 顯示結果;
-            window.scrollTo(0,document.body.scrollHeight);
+            window.scrollTo(0, document.body.scrollHeight);
         }
     </script>
 </body>
