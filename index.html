@@ -21,6 +21,10 @@
             <label for="quantity">請輸入數量:</label>
             <input type="number" class="form-control" id="quantity">
         </div>
+        <div class="form-group">
+            <label for="price">請輸入轉蛋金額:</label>
+            <input type="number" class="form-control" id="price">
+        </div>
         <button type="button" class="btn btn-primary" onclick="抽獎()">開始抽獎</button>
         <button type="button" class="btn btn-primary" onclick="抽獎多次(5)">5抽</button>
         <button type="button" class="btn btn-primary" onclick="抽獎多次(10)">10抽</button>
@@ -29,11 +33,12 @@
         <div id="抽獎結果" class="mt-4">
             <!-- 這裡會顯示抽獎結果 -->
         </div>
+        <div id="抽獎紀錄" class="mt-4">
+            <!-- 這裡會顯示抽獎紀錄 -->
+        </div>
     </div>
 
     <script>
-        var 抽獎紀錄 = [];
-
         function 抽獎() {
             var 數量 = document.getElementById("quantity").value;
             抽獎多次(數量);
@@ -112,60 +117,68 @@
                 }
             }
         }
+
+        抽獎紀錄.push({ 次數: 抽獎紀錄.length + 1, 結果: 抽獎結果 });
+
         更新結果區域的顯示();
         更新紀錄區域的顯示();
+    }
 
+    function 更新結果區域的顯示() {
+        var 結果區域 = document.getElementById("抽獎結果");
+        var 顯示結果 = "抽獎結果:<br>";
+        var 數量 = document.getElementById("quantity").value;
+        var 金額 = document.getElementById("price").value;
 
+        for (var key in 抽獎結果) {
+            if (抽獎結果.hasOwnProperty(key)) {
+                var prize = key;
+                var amount = 抽獎結果[key];
+                if (amount > 1) {
+                    prize += " x" + amount;
+                }
+                if (items.find(function (item) { return item[0] === key; })[2] < 0.001) {
+                    prize = "<span style='color: red; font-weight: bold;'>" + prize + "</span>";
+                }
+                顯示結果 += prize + "<br>";
+            }
         }
-        function 更新結果區域的顯示() {
-            var 結果區域 = document.getElementById("抽獎結果");
-            var 顯示結果 = "抽獎結果:<br>";
-        
-            for (var key in 抽獎結果) {
-                if (抽獎結果.hasOwnProperty(key)) {
+
+        顯示結果 += "抽獎次數：" + 數量 + "<br>";
+        顯示結果 += "轉蛋金額：" + 金額 + "元";
+
+        結果區域.innerHTML = 顯示結果;
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+    function 更新紀錄區域的顯示() {
+        var 紀錄區域 = document.getElementById("抽獎紀錄");
+        var 顯示紀錄 = "抽獎紀錄:<br>";
+
+        for (var i = 0; i < 抽獎紀錄.length; i++) {
+            var 次數 = 抽獎紀錄[i].次數;
+            var 結果 = 抽獎紀錄[i].結果;
+            顯示紀錄 += "第 " + 次數 + " 次抽獎結果:<br>";
+            for (var key in 結果) {
+                if (結果.hasOwnProperty(key)) {
                     var prize = key;
-                    var amount = 抽獎結果[key];
+                    var amount = 結果[key];
                     if (amount > 1) {
                         prize += " x" + amount;
                     }
                     if (items.find(function (item) { return item[0] === key; })[2] < 0.001) {
-                        prize = "<span class='low-probability'>" + prize + "</span>";
+                        prize = "<span style='color: red; font-weight: bold;'>" + prize + "</span>";
                     }
-                    顯示結果 += prize + "<br>";
+                    顯示紀錄 += prize + "<br>";
                 }
             }
-        
-            結果區域.innerHTML = 顯示結果;
-            window.scrollTo(0, document.body.scrollHeight);
+            顯示紀錄 += "<br>";
         }
-        function 更新紀錄區域的顯示() {
-            var 紀錄區域 = document.getElementById("抽獎紀錄");
-            var 顯示紀錄 = "抽獎紀錄:<br>";
-        
-            for (var i = 0; i < 抽獎紀錄.length; i++) {
-                var 次數 = 抽獎紀錄[i].次數;
-                var 結果 = 抽獎紀錄[i].結果;
-                顯示紀錄 += "第 " + 次數 + " 次抽獎結果:<br>";
-                for (var key in 結果) {
-                    if (結果.hasOwnProperty(key)) {
-                        var prize = key;
-                        var amount = 結果[key];
-                        if (amount > 1) {
-                            prize += " x" + amount;
-                        }
-                        if (items.find(function (item) { return item[0] === key; })[2] < 0.001) {
-                            prize = "<span class='low-probability'>" + prize + "</span>";
-                        }
-                        顯示紀錄 += prize + "<br>";
-                    }
-                }
-                顯示紀錄 += "<br>";
-            }
-        
-            紀錄區域.innerHTML = 顯示紀錄;
-            window.scrollTo(0, document.body.scrollHeight);
-        }
-    </script>
+
+        紀錄區域.innerHTML = 顯示紀錄;
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+</script>
 </body>
 
 </html>
