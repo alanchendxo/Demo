@@ -26,10 +26,14 @@
             <input type="number" class="form-control" id="amount">
         </div>
         <button type="button" class="btn btn-primary" onclick="抽獎()">開始抽獎</button>
-        <button type="button" class="btn btn-primary" onclick="抽獎多次(5,document.getElementById('amount').value)">5抽</button>
-        <button type="button" class="btn btn-primary" onclick="抽獎多次(10,document.getElementById('amount').value)">10抽</button>
-        <button type="button" class="btn btn-primary" onclick="抽獎多次(50,document.getElementById('amount').value)">50抽</button>
-        <button type="button" class="btn btn-primary" onclick="抽獎多次(100,document.getElementById('amount').value)">100抽</button>
+        <button type="button" class="btn btn-primary"
+            onclick="抽獎多次(5,document.getElementById('amount').value)">5抽</button>
+        <button type="button" class="btn btn-primary"
+            onclick="抽獎多次(10,document.getElementById('amount').value)">10抽</button>
+        <button type="button" class="btn btn-primary"
+            onclick="抽獎多次(50,document.getElementById('amount').value)">50抽</button>
+        <button type="button" class="btn btn-primary"
+            onclick="抽獎多次(100,document.getElementById('amount').value)">100抽</button>
         <div id="抽獎結果" class="mt-4">
             <!-- 這裡會顯示抽獎結果 -->
         </div>
@@ -126,16 +130,68 @@
                         prize = "<span style='color: red; font-weight: bold;'>" + prize + "</span>";
                     }
                     顯示結果 += prize + "<br>";
+                    // 新增變數來儲存總合抽到的價值
+                    var 總合抽到的價值 = 0;
+
+                    for (var key in 抽獎結果) {
+                        if (抽獎結果.hasOwnProperty(key)) {
+                            // 計算每個道具的淨值
+                            var 淨值 = 0;
+                            switch (key) {
+                                case "卡普拉姊姊頭飾":
+                                    淨值 = 2500;
+                                    break;
+                                case "卡普拉姊姊服裝":
+                                    淨值 = 2500;
+                                    break;
+                                case "(服飾)波利護士針筒":
+                                    淨值 = 1550;
+                                    break;
+                                case "阿斯特莉亞鎧甲":
+                                    淨值 = 500;
+                                    break;
+                                case "惡魔獵爪拳套":
+                                    淨值 = 5000;
+                                    break;
+                                case "懲治審判錘":
+                                    淨值 = 3500;
+                                    break;
+                                case "善惡冠冕(聖裁者)":
+                                    淨值 = 5500;
+                                    break;
+                                case "附魔票3入禮券":
+                                    淨值 = 1350;
+                                    break;
+                                case "影子純淨手套":
+                                    淨值 = 18000;
+                                    break;
+                                case "漂浮快樂氣球":
+                                    淨值 = 9000;
+                                    break;
+                                case "伊美樂心臟能量石":
+                                    淨值 = 40000;
+                                    break;
+                                case "闇●劍士 賽尼亞卡片":
+                                    淨值 = 20000;
+                                    break;
+                                case "魔王夢羅克的忠誠僕人":
+                                    淨值 = 70000;
+                                    break;
+                            }
+                            // 將抽到的數量乘上淨值加入總合抽到的價值中
+                            總合抽到的價值 += 淨值 * 抽獎結果[key];
+                        }
+                    }
                 }
+
+                顯示結果 += "抽獎次數：" + 次數 + "<br>";
+                顯示結果 += "每次轉蛋金額：" + 金額 + "元<br>";
+                顯示結果 += "總金額：" + 總金額 + "元";
+                顯示結果 += "<br>幣值17.7算，預估抽到的價值(只看紅色值錢部分)：" + 總合抽到的價值 + " 元";
+
+                結果區域.innerHTML = 顯示結果;
+                window.scrollTo(0, document.body.scrollHeight);
             }
-
-            顯示結果 += "抽獎次數：" + 次數 + "<br>";
-            顯示結果 += "每次轉蛋金額：" + 金額 + "元<br>";
-            顯示結果 += "總金額：" + 總金額 + "元";
-
-            結果區域.innerHTML = 顯示結果;
-            window.scrollTo(0, document.body.scrollHeight);
-        }
     </script>
 </body>
 
