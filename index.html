@@ -26,10 +26,10 @@
             <input type="number" class="form-control" id="amount">
         </div>
         <button type="button" class="btn btn-primary" onclick="抽獎()">開始抽獎</button>
-        <button type="button" class="btn btn-primary" onclick="抽獎多次(5)">5抽</button>
-        <button type="button" class="btn btn-primary" onclick="抽獎多次(10)">10抽</button>
-        <button type="button" class="btn btn-primary" onclick="抽獎多次(50)">50抽</button>
-        <button type="button" class="btn btn-primary" onclick="抽獎多次(100)">100抽</button>
+        <button type="button" class="btn btn-primary" onclick="抽獎多次(5,document.getElementById('amount').value)">5抽</button>
+        <button type="button" class="btn btn-primary" onclick="抽獎多次(10,document.getElementById('amount').value)">10抽</button>
+        <button type="button" class="btn btn-primary" onclick="抽獎多次(50,document.getElementById('amount').value)">50抽</button>
+        <button type="button" class="btn btn-primary" onclick="抽獎多次(100,document.getElementById('amount').value)">100抽</button>
         <div id="抽獎結果" class="mt-4">
             <!-- 這裡會顯示抽獎結果 -->
         </div>
@@ -86,9 +86,6 @@
             ];
 
             var 抽獎結果 = {};
-            if (金額 == null){
-                金額 = 29;
-            }
 
             for (var i = 0; i < 次數; i++) {
                 var 隨機數 = Math.random(); // 生成0到1之間的隨機數
