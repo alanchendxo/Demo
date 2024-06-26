@@ -112,26 +112,10 @@
                 }
             }
         }
-
-        var 結果區域 = document.getElementById("抽獎結果");
-        var 顯示結果 = "抽獎結果:<br>";
-
-        for (var key in 抽獎結果) {
-            if (抽獎結果.hasOwnProperty(key)) {
-                var prize = key;
-                var amount = 抽獎結果[key];
-                if (amount > 1) {
-                    prize += " x" + amount;
-                }
-                if (items.find(function (item) { return item[0] === key; })[2] < 0.001) {
-                    prize = "<span style='color: red; font-weight: bold;'>" + prize + "</span>";
-                }
-                顯示結果 += prize + "<br>";
-            }
-        }
-
         更新結果區域的顯示();
         更新紀錄區域的顯示();
+
+
         }
         function 更新結果區域的顯示() {
             var 結果區域 = document.getElementById("抽獎結果");
