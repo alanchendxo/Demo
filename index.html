@@ -27,27 +27,111 @@
         </div>
         <button type="button" class="btn btn-primary" onclick="抽獎()">開始抽獎</button>
         <button type="button" class="btn btn-primary"
-            onclick="抽獎多次(5,document.getElementById('amount').value)">5抽</button>
+            onclick="抽獎多次(5, document.getElementById('amount').value)">5抽</button>
         <button type="button" class="btn btn-primary"
-            onclick="抽獎多次(10,document.getElementById('amount').value)">10抽</button>
+            onclick="抽獎多次(10, document.getElementById('amount').value)">10抽</button>
         <button type="button" class="btn btn-primary"
-            onclick="抽獎多次(50,document.getElementById('amount').value)">50抽</button>
+            onclick="抽獎多次(50, document.getElementById('amount').value)">50抽</button>
         <button type="button" class="btn btn-primary"
-            onclick="抽獎多次(100,document.getElementById('amount').value)">100抽</button>
+            onclick="抽獎多次(100, document.getElementById('amount').value)">100抽</button>
         <div id="抽獎結果" class="mt-4">
             <!-- 這裡會顯示抽獎結果 -->
+        </div>
+
+        <h2>經驗需求計算</h2>
+        <div class="form-group">
+            <label for="level1">等級1:</label>
+            <input type="range" class="form-control-range" id="level1" min="220" max="250" value="220" oninput="updateExp()">
+            <span id="level1Value">220</span>
+        </div>
+        <div class="form-group">
+            <label for="percent1">等級1 百分比:</label>
+            <input type="number" class="form-control" id="percent1" min="0" max="100" value="0" oninput="updateExp()">
+        </div>
+        <div class="form-group">
+            <label for="level2">等級2:</label>
+            <input type="range" class="form-control-range" id="level2" min="220" max="250" value="220" oninput="updateExp()">
+            <span id="level2Value">220</span>
+        </div>
+        <div class="form-group">
+            <label for="percent2">等級2 百分比:</label>
+            <input type="number" class="form-control" id="percent2" min="0" max="100" value="0" oninput="updateExp()">
+        </div>
+        <div id="expResult" class="mt-4">
+            <!-- 顯示所需經驗值 -->
         </div>
     </div>
 
     <script>
+        const experienceData = {
+            220: 690000000,
+            221: 780000000,
+            222: 890000000,
+            223: 1020000000,
+            224: 1160000000,
+            225: 1330000000,
+            226: 1510000000,
+            227: 1720000000,
+            228: 1970000000,
+            229: 2240000000,
+            230: 2560000000,
+            231: 2920000000,
+            232: 3330000000,
+            233: 3790000000,
+            234: 4320000000,
+            235: 4930000000,
+            236: 5620000000,
+            237: 6410000000,
+            238: 7310000000,
+            239: 8330000000,
+            240: 9500000000,
+            241: 10830000000,
+            242: 12340000000,
+            243: 14070000000,
+            244: 16040000000,
+            245: 18290000000,
+            246: 20850000000,
+            247: 23770000000,
+            248: 27000000000,
+            249: 30890000000,
+            250: 35220000000
+        };
+
+        function calculateExperience(level1, percent1, level2, percent2) {
+            const exp1 = experienceData[level1] * (percent1 / 100);
+            const exp2 = experienceData[level2] * (percent2 / 100);
+
+            let totalExp = level2 > level1 ? (experienceData[level2] * (percent2 / 100)) : exp2 - exp1;
+            for (let lvl = level1; lvl < level2; lvl++) {
+                totalExp += experienceData[lvl];
+            }
+
+            totalExp -= exp1;
+
+            return totalExp;
+        }
+
+        function updateExp() {
+            const level1 = parseInt(document.getElementById("level1").value);
+            const percent1 = parseFloat(document.getElementById("percent1").value);
+            const level2 = parseInt(document.getElementById("level2").value);
+            const percent2 = parseFloat(document.getElementById("percent2").value);
+
+            document.getElementById("level1Value").textContent = level1;
+            document.getElementById("level2Value").textContent = level2;
+
+            const requiredExp = calculateExperience(level1, percent1, level2, percent2);
+            document.getElementById("expResult").innerHTML = `<b>需要經驗值:</b> ${requiredExp.toLocaleString()} 點`;
+        }
+
         function 抽獎() {
-            var 數量 = document.getElementById("quantity").value;
-            var 金額 = document.getElementById("amount").value;
+            const 數量 = document.getElementById("quantity").value;
+            const 金額 = document.getElementById("amount").value;
             抽獎多次(數量, 金額);
         }
-        function 抽獎多次(次數, 金額) {
 
-            var items = [
+        function 抽獎多次(次數, 金額) {
+            const items = [
                 ["擴音器[轉蛋專用]", 5, 0.1296],
                 ["免掉啪證書[轉蛋專用]", 3, 0.1296],
                 ["蜂后卷軸", 3, 0.1296],
@@ -90,14 +174,14 @@
                 ["塔奧群卡卡片", 1, 0.00005]
             ];
 
-            var 抽獎結果 = {};
+            const 抽獎結果 = {};
 
-            for (var i = 0; i < 次數; i++) {
-                var 隨機數 = Math.random(); // 生成0到1之間的隨機數
+            for (let i = 0; i < 次數; i++) {
+                const 隨機數 = Math.random(); // 生成0到1之間的隨機數
 
-                var 抽中的索引 = -1;
-                var cumulativeProbability = 0;
-                for (var j = 0; j < items.length; j++) {
+                let 抽中的索引 = -1;
+                let cumulativeProbability = 0;
+                for (let j = 0; j < items.length; j++) {
                     cumulativeProbability += items[j][2];
                     if (隨機數 < cumulativeProbability) {
                         抽中的索引 = j;
@@ -106,7 +190,7 @@
                 }
 
                 if (抽中的索引 !== -1) {
-                    var 抽中的物品 = { "名稱": items[抽中的索引][0], "機率": items[抽中的索引][2] };
+                    const 抽中的物品 = { "名稱": items[抽中的索引][0], "機率": items[抽中的索引][2] };
                     if (抽中的物品.名稱 in 抽獎結果) {
                         抽獎結果[抽中的物品.名稱]++;
                     } else {
@@ -115,74 +199,23 @@
                 }
             }
 
-            var 總金額 = 次數 * 金額;
+            const 總金額 = 次數 * 金額;
 
-            var 結果區域 = document.getElementById("抽獎結果");
-            var 顯示結果 = "抽獎結果:<br>";
+            const 結果區域 = document.getElementById("抽獎結果");
+            let 顯示結果 = "抽獎結果:<br>";
 
-            for (var key in 抽獎結果) {
+            for (const key in 抽獎結果) {
                 if (抽獎結果.hasOwnProperty(key)) {
-                    var prize = key;
-                    var amount = 抽獎結果[key];
+                    const prize = key;
+                    const amount = 抽獎結果[key];
+                    let itemString = prize;
                     if (amount > 1) {
-                        prize += " x" + amount;
+                        itemString += " x" + amount;
                     }
                     if (items.find(function (item) { return item[0] === key; })[2] < 0.001) {
-                        prize = "<span style='color: red; font-weight: bold;'>" + prize + "</span>";
+                        itemString = "<span style='color: red; font-weight: bold;'>" + prize + "</span>";
                     }
-                    顯示結果 += prize + "<br>";
-                    // 新增變數來儲存總合抽到的價值
-                    var 總合抽到的價值 = 0;
-
-                    for (var key in 抽獎結果) {
-                        if (抽獎結果.hasOwnProperty(key)) {
-                            // 計算每個道具的淨值
-                            var 淨值 = 0;
-                            switch (key) {
-                                case "卡普拉姊姊頭飾":
-                                    淨值 = 1500;
-                                    break;
-                                case "卡普拉姊姊服裝":
-                                    淨值 = 2000;
-                                    break;
-                                case "(服飾)波利護士針筒":
-                                    淨值 = 1000;
-                                    break;
-                                case "阿斯特莉亞鎧甲":
-                                    淨值 = 500;
-                                    break;
-                                case "惡魔獵爪拳套":
-                                    淨值 = 4100;
-                                    break;
-                                case "懲治審判錘":
-                                    淨值 = 624;
-                                    break;
-                                case "善惡冠冕(聖裁者)":
-                                    淨值 = 3700;
-                                    break;
-                                case "附魔票3入禮券":
-                                    淨值 = 1350;
-                                    break;
-                                case "影子純淨手套":
-                                    淨值 = 18000;
-                                    break;
-                                case "漂浮快樂氣球":
-                                    淨值 = 9000;
-                                    break;
-                                case "伊美樂心臟能量石":
-                                    淨值 = 40000;
-                                    break;
-                                case "闇●劍士 賽尼亞卡片":
-                                    淨值 = 20000;
-                                    break;
-                                case "魔王夢羅克的忠誠僕人":
-                                    淨值 = 70000;
-                                    break;
-                            }
-                            // 將抽到的數量乘上淨值加入總合抽到的價值中
-                            總合抽到的價值 += 淨值 * 抽獎結果[key];
-                        }
-                    }
+                    顯示結果 += itemString + "<br>";
                 }
             }
 
@@ -191,8 +224,10 @@
             顯示結果 += "總金額：" + 總金額 + "元";
 
             結果區域.innerHTML = 顯示結果;
-            window.scrollTo(0, document.body.scrollHeight);
+            window.scroll(0, document.body.scrollHeight);
         }
+
+        window.onload = updateExp;
     </script>
 </body>
 
