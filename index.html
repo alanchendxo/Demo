@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,9 +13,10 @@
         }
     </style>
 </head>
+
 <body>
     <div class="container">
-        <h2>2024 7月轉蛋I</h2>
+        <h2>2024 7月轉蛋II</h2>
         <div class="form-group">
             <label for="quantity">請輸入數量:</label>
             <input type="number" class="form-control" id="quantity">
@@ -24,10 +26,14 @@
             <input type="number" class="form-control" id="amount">
         </div>
         <button type="button" class="btn btn-primary" onclick="抽獎()">開始抽獎</button>
-        <button type="button" class="btn btn-primary" onclick="抽獎多次(5, document.getElementById('amount').value)">5抽</button>
-        <button type="button" class="btn btn-primary" onclick="抽獎多次(10, document.getElementById('amount').value)">10抽</button>
-        <button type="button" class="btn btn-primary" onclick="抽獎多次(50, document.getElementById('amount').value)">50抽</button>
-        <button type="button" class="btn btn-primary" onclick="抽獎多次(100, document.getElementById('amount').value)">100抽</button>
+        <button type="button" class="btn btn-primary"
+            onclick="抽獎多次(5, document.getElementById('amount').value)">5抽</button>
+        <button type="button" class="btn btn-primary"
+            onclick="抽獎多次(10, document.getElementById('amount').value)">10抽</button>
+        <button type="button" class="btn btn-primary"
+            onclick="抽獎多次(50, document.getElementById('amount').value)">50抽</button>
+        <button type="button" class="btn btn-primary"
+            onclick="抽獎多次(100, document.getElementById('amount').value)">100抽</button>
         <div id="抽獎結果" class="mt-4">
             <!-- 這裡會顯示抽獎結果 -->
         </div>
@@ -35,7 +41,8 @@
         <h2>經驗需求計算</h2>
         <div class="form-group">
             <label for="level1">等級1:</label>
-            <input type="range" class="form-control-range" id="level1" min="220" max="260" value="220" oninput="updateExp()">
+            <input type="range" class="form-control-range" id="level1" min="220" max="260" value="220"
+                oninput="updateExp()">
             <span id="level1Value">220</span>
         </div>
         <div class="form-group">
@@ -44,7 +51,8 @@
         </div>
         <div class="form-group">
             <label for="level2">等級2:</label>
-            <input type="range" class="form-control-range" id="level2" min="220" max="260" value="220" oninput="updateExp()">
+            <input type="range" class="form-control-range" id="level2" min="220" max="260" value="220"
+                oninput="updateExp()">
             <span id="level2Value">220</span>
         </div>
         <div class="form-group">
@@ -161,37 +169,37 @@
                 ["高級戰鬥藥10個箱子", 1, 0.08],
                 ["力量防護卷軸", 3, 0.08],
                 ["變身卷軸秘笈", 2, 0.025],
-                ["髮型精靈合成箱", 1, 0.015],
+                ["遊俠假髮禮盒", 1, 0.015],
                 ["真力量防護卷軸", 3, 0.015],
                 ["忽克連影子精煉鎚", 1, 0.0105],
-                ["服飾精靈合成箱", 1, 0.01],
-                ["影子二期精靈屬性箱", 5, 0.01],
-                ["影子職業屬性咒語(魔法)", 3, 0.00225],
-                ["影子職業屬性咒語(物理)", 3, 0.00225],
+                ["念動風神珠", 3, 0.01],
+                ["古墓遺物", 5, 0.01],
+                ["影子職業屬性咒語(魔法)", 3, 0.00275],
+                ["影子職業屬性咒語(物理)", 3, 0.00275],
                 ["影子屬性咒語寶盒", 2, 0.002],
-                ["(服飾)幸運四葉草髮夾", 1, 0.002],
-                ["圓月之力", 8, 0.002],
-                ["鬥魂", 6, 0.002],
-                ["時光超越能量", 1, 0.00175],
-                ["扭曲時光鑰匙", 3, 0.00175],
+                ["(服飾)三花貓咖啡杯(白)", 1, 0.002],
+                ["豔陽粉沙", 5, 0.0016],
+                ["電扇改造工具EX", 3, 0.0016],
+                ["時光超越能量", 1, 0.0016],
+                ["扭曲時光鑰匙", 3, 0.0016],
                 ["英雄武器-LT物理改造裝置", 2, 0.0015],
                 ["英雄武器-LT魔法改造裝置", 2, 0.0015],
-                ["旋律音符效果石(頭上)", 1, 0.00125],
-                ["強力精華球", 1, 0.001],
+                ["特殊帽子精煉錘", 1, 0.00125],
+                ["塔諾斯頭盔武器AD精煉錘", 1, 0.001],
                 ["背飾精靈合成箱", 1, 0.00075],
-                ["(服飾)偽神的邪眼", 1, 0.0006],
-                ["附魔票", 1, 0.0006],
-                ["閃耀聖光拳刃", 1, 0.0005],
-                ["殘殺收割者拳刃", 1, 0.0005],
-                ["善惡冠冕(十字影武)", 1, 0.0005],
-                ["無處安放的魅力", 1, 0.00045],
-                ["機械鋁合金改造靴", 1, 0.0004],
-                ["阿斯特莉亞戰盔", 1, 0.00035],
-                ["影子神力猛瑪選擇箱", 1, 0.0002],
-                ["時光超越者之戒-LT", 1, 0.0002],
+                ["(服飾)狂暴邪惡箱KUSO包", 1, 0.0006],
+                ["超時空結晶裝備寶箱", 1, 0.0006],
+                ["聖之破壞巨斧", 1, 0.0005],
+                ["毀滅者戰斧", 1, 0.0005],
+                ["善惡冠冕(機甲神匠)", 1, 0.0005],
+                ["夢羅克盜墓者披巾", 1, 0.00045],
+                ["念動風神斗篷", 1, 0.00045],
+                ["(服飾)翱翔永恆之翼", 1, 0.00035],
+                ["影子無極選擇箱", 1, 0.0003],
+                ["浮空的太極玉", 1, 0.00015],
                 ["伊美樂心臟能量石", 1, 0.0001],
                 ["王水瓶", 1, 0.00005],
-                ["塔奧群卡卡片", 1, 0.00005]
+                ["黃金女王甲蟲卡片", 1, 0.00005]
             ];
 
             const 抽獎結果 = {};
@@ -249,4 +257,5 @@
         window.onload = updateExp;
     </script>
 </body>
+
 </html>
