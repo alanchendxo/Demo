@@ -41,7 +41,7 @@
         <h2>經驗需求計算</h2>
         <div class="form-group">
             <label for="level1">等級1:</label>
-            <input type="range" class="form-control-range" id="level1" min="220" max="250" value="220" oninput="updateExp()">
+            <input type="range" class="form-control-range" id="level1" min="220" max="260" value="220" oninput="updateExp()">
             <span id="level1Value">220</span>
         </div>
         <div class="form-group">
@@ -50,7 +50,7 @@
         </div>
         <div class="form-group">
             <label for="level2">等級2:</label>
-            <input type="range" class="form-control-range" id="level2" min="220" max="250" value="220" oninput="updateExp()">
+            <input type="range" class="form-control-range" id="level2" min="220" max="260" value="220" oninput="updateExp()">
             <span id="level2Value">220</span>
         </div>
         <div class="form-group">
@@ -94,19 +94,37 @@
             247: 23770000000,
             248: 27000000000,
             249: 30890000000,
-            250: 35220000000
+            250: 35220000000,
+            251: 43180000000,
+            252: 52940000000,
+            253: 64900000000,
+            254: 79570000000,
+            255: 97550000000,
+            256: 119600000000,
+            257: 146630000000,
+            258: 179770000000,
+            259: 220400000000,
+            260: 270270000000
         };
 
         function calculateExperience(level1, percent1, level2, percent2) {
             const exp1 = experienceData[level1] * (percent1 / 100);
             const exp2 = experienceData[level2] * (percent2 / 100);
 
-            let totalExp = level2 > level1 ? (experienceData[level2] * (percent2 / 100)) : exp2 - exp1;
-            for (let lvl = level1; lvl < level2; lvl++) {
-                totalExp += experienceData[lvl];
+            let totalExp = 0;
+            if (level2 > level1) {
+                totalExp += exp2;
+                for (let lvl = level1; lvl < level2; lvl++) {
+                    totalExp += experienceData[lvl];
+                }
+                totalExp -= exp1;
+            } else if (level2 < level1) {
+                totalExp += exp1;
+                for (let lvl = level2; lvl < level1; lvl++) {
+                    totalExp -= experienceData[lvl];
+                }
+                totalExp -= exp2;
             }
-
-            totalExp -= exp1;
 
             return totalExp;
         }
@@ -206,16 +224,15 @@
 
             for (const key in 抽獎結果) {
                 if (抽獎結果.hasOwnProperty(key)) {
-                    const prize = key;
+                    let prize = key;
                     const amount = 抽獎結果[key];
-                    let itemString = prize;
                     if (amount > 1) {
-                        itemString += " x" + amount;
+                        prize += " x" + amount;
                     }
                     if (items.find(function (item) { return item[0] === key; })[2] < 0.001) {
-                        itemString = "<span style='color: red; font-weight: bold;'>" + prize + "</span>";
+                        prize = "<span style='color: red; font-weight: bold;'>" + prize + "</span>";
                     }
-                    顯示結果 += itemString + "<br>";
+                    顯示結果 += prize + "<br>";
                 }
             }
 
@@ -224,7 +241,7 @@
             顯示結果 += "總金額：" + 總金額 + "元";
 
             結果區域.innerHTML = 顯示結果;
-            window.scroll(0, document.body.scrollHeight);
+            window.scrollTo(0, document.body.scrollHeight);
         }
 
         window.onload = updateExp;
