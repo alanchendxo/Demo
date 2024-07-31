@@ -16,28 +16,6 @@
 
 <body>
     <div class="container">
-        <h2>2024 7月轉蛋II</h2>
-        <div class="form-group">
-            <label for="quantity">請輸入數量:</label>
-            <input type="number" class="form-control" id="quantity">
-        </div>
-        <div class="form-group">
-            <label for="amount">每次轉蛋的金額:</label>
-            <input type="number" class="form-control" id="amount">
-        </div>
-        <button type="button" class="btn btn-primary" onclick="抽獎()">開始抽獎</button>
-        <button type="button" class="btn btn-primary"
-            onclick="抽獎多次(5, document.getElementById('amount').value)">5抽</button>
-        <button type="button" class="btn btn-primary"
-            onclick="抽獎多次(10, document.getElementById('amount').value)">10抽</button>
-        <button type="button" class="btn btn-primary"
-            onclick="抽獎多次(50, document.getElementById('amount').value)">50抽</button>
-        <button type="button" class="btn btn-primary"
-            onclick="抽獎多次(100, document.getElementById('amount').value)">100抽</button>
-        <div id="抽獎結果" class="mt-4">
-            <!-- 這裡會顯示抽獎結果 -->
-        </div>
-
         <h2>經驗需求計算</h2>
         <div class="form-group">
             <label for="level1">等級1:</label>
@@ -61,6 +39,27 @@
         </div>
         <div id="expResult" class="mt-4">
             <!-- 顯示所需經驗值 -->
+        </div>
+        <h2>2024 7月轉蛋II</h2>
+        <div class="form-group">
+            <label for="quantity">請輸入數量:</label>
+            <input type="number" class="form-control" id="quantity">
+        </div>
+        <div class="form-group">
+            <label for="amount">每次轉蛋的金額:</label>
+            <input type="number" class="form-control" id="amount">
+        </div>
+        <button type="button" class="btn btn-primary" onclick="抽獎()">開始抽獎</button>
+        <button type="button" class="btn btn-primary"
+            onclick="抽獎多次(5, document.getElementById('amount').value)">5抽</button>
+        <button type="button" class="btn btn-primary"
+            onclick="抽獎多次(10, document.getElementById('amount').value)">10抽</button>
+        <button type="button" class="btn btn-primary"
+            onclick="抽獎多次(50, document.getElementById('amount').value)">50抽</button>
+        <button type="button" class="btn btn-primary"
+            onclick="抽獎多次(100, document.getElementById('amount').value)">100抽</button>
+        <div id="抽獎結果" class="mt-4">
+            <!-- 這裡會顯示抽獎結果 -->
         </div>
     </div>
 
