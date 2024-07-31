@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,7 +12,6 @@
         }
     </style>
 </head>
-
 <body>
     <div class="container">
         <h2>2024 7月轉蛋I</h2>
@@ -26,14 +24,10 @@
             <input type="number" class="form-control" id="amount">
         </div>
         <button type="button" class="btn btn-primary" onclick="抽獎()">開始抽獎</button>
-        <button type="button" class="btn btn-primary"
-            onclick="抽獎多次(5, document.getElementById('amount').value)">5抽</button>
-        <button type="button" class="btn btn-primary"
-            onclick="抽獎多次(10, document.getElementById('amount').value)">10抽</button>
-        <button type="button" class="btn btn-primary"
-            onclick="抽獎多次(50, document.getElementById('amount').value)">50抽</button>
-        <button type="button" class="btn btn-primary"
-            onclick="抽獎多次(100, document.getElementById('amount').value)">100抽</button>
+        <button type="button" class="btn btn-primary" onclick="抽獎多次(5, document.getElementById('amount').value)">5抽</button>
+        <button type="button" class="btn btn-primary" onclick="抽獎多次(10, document.getElementById('amount').value)">10抽</button>
+        <button type="button" class="btn btn-primary" onclick="抽獎多次(50, document.getElementById('amount').value)">50抽</button>
+        <button type="button" class="btn btn-primary" onclick="抽獎多次(100, document.getElementById('amount').value)">100抽</button>
         <div id="抽獎結果" class="mt-4">
             <!-- 這裡會顯示抽獎結果 -->
         </div>
@@ -124,9 +118,17 @@
                     totalExp -= experienceData[lvl];
                 }
                 totalExp -= exp2;
+            } else {
+                // When levels are the same, only consider percentage difference
+                totalExp = Math.abs(exp2 - exp1);
             }
 
             return totalExp;
+        }
+
+        function formatExp(exp) {
+            const 亿 = 100000000;
+            return (exp / 亿).toLocaleString(undefined, { maximumFractionDigits: 2 }) + " 亿";
         }
 
         function updateExp() {
@@ -139,7 +141,7 @@
             document.getElementById("level2Value").textContent = level2;
 
             const requiredExp = calculateExperience(level1, percent1, level2, percent2);
-            document.getElementById("expResult").innerHTML = `<b>需要經驗值:</b> ${requiredExp.toLocaleString()} 點`;
+            document.getElementById("expResult").innerHTML = `<b>需要經驗值:</b> ${formatExp(requiredExp)} 點`;
         }
 
         function 抽獎() {
@@ -247,5 +249,4 @@
         window.onload = updateExp;
     </script>
 </body>
-
 </html>
